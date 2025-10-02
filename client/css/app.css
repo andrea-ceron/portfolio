@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root{
+    --header-height: 3rem;
+
+    /* ======== COLORS  ========== */
+    --hue: 0;
+    --sat: 0%;
+    --title-color:#f2f2f2;
+    --title-color-dark: hsl(var(--hue), var(--sat), 0% );
+    --text-color: #f2f2f2;
+    --body-color: hsl(var(--hue), var(--sat), 98%);
+    --container-color: #191919;
+    --light-color: #f2f2f2
+
+    /* ========= Font and Typography */
+    --body-font: 'Raleway', sans-serif;
+    --montserrat: 'Montserrat', sans-serif;
+
+    /* SIZE */
+    --big-font-size: 3.5rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+    --smaller-font-size: 0.813rem;
+    --tiny-font-size: 0.625rem;
+
+    /* WEIGHT */
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+
+    /* ============  Margins bottom */
+    --mb-0-25: 0.25rem;
+    --mb-0-5: 0.5rem;
+    --mb-0-75: 0.75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
+
+    /* ============== z-index ==================*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+}
+
+@media screen and(max-width: 992px) {
+    :root{
+
+        /* SIZE */
+        --big-font-size: 2.75rem;
+        --h1-font-size: 1.5rem;
+        --h2-font-size: 1.25rem;
+        --h3-font-size: 1rem;
+        --normal-font-size: 0.938rem;
+        --small-font-size: 0.813rem;
+        --smaller-font-size: 0.75rem;
+
+    }
+}
+
+
+/* ======== BASE ======== */
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background: #191919;
+}
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+
+
+  /* Chrome, Edge, and Safari */
+
+
+html{
+    scroll-behavior: smooth;
+
+}
+
+body,button,input, textarea{
+    font-family: var(--montserrat);
+    font-size: var(--normal-font-size);
+}
+
+body{
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+
+h1,h2,h3{
+    color: #f2f2f2;
+    font-weight: var(--font-normal);
+    font-family: var(--montserrat);
+    letter-spacing: .5px;
+
+}
+p{
+    color: #f2f2f2;
+    font-family: var(--montserrat) ;
+    letter-spacing: .4px;
+}
+
+ul{
+    list-style: none;
+}
+
+a{
+    text-decoration: none;
+    color: #454545;
+    font-weight: var(--font-normal);
+    font-family: var(--montserrat);
+}
+
+button{
+    cursor: pointer;
+    border: none;
+    outline: none;
+
+}
+
+img{
+    max-width: 100%; 
+    height: auto;
+}
+
+.section{
+    padding: 6rem 0 2rem;
+}
+
+.section__title{
+    font-size: var(--h1-font-size);
+    color: var(--title-color);
+    letter-spacing: .5px;
+}
+
+.section__subtitle{
+    display: block;
+    font-size: var(--small-font-size);
+    margin-bottom: 4rem;
+    letter-spacing: .8px;
+
+}
+
+.section__title, .section__subtitle{
+    text-align: center;
+}
+
+
+/* ======= LAYOUT ======= */
+.container{
+    max-width: 968px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid{
+    display: grid;
+    gap:1.5;
+}
+
+/* ===== BUTTONS ======  */
+.button{
+    display: inline-block;
+    background-color: #d1a161;
+    color: var(--container-color);
+    padding: 0.7rem 1.3rem;
+    border-radius: 1rem;
+    font-weight:  var(--font-medium);
+    transition: .3s;
+}
+
+.button:hover{
+    background-color: #f2f2f2;
+
+
+}
+
+.button__icon{
+    margin-left: var(--mb-0-5);
+}
+
+.button__flex{
+    display: inline-flex;
+    align-items: center;
+}
+
+
+
+
+/* ====== BREAKPOINTS ======== */
+@media screen and (max-width: 992px){
+
+}
+
+@media screen and (max-width: 768px){
+    
+}
+
+@media screen and (max-width: 576px){
+    
+}
+
+@media screen and (max-width: 350px){
+    
+}
+
+.footer{
+    height: 100px;
+}
+
+::-webkit-scrollbar{width:7px}
+::-webkit-scrollbar-track{background:#303030;border-radius:0px}
+::-webkit-scrollbar-thumb{background:#9b9b9b;border: radius 7px}

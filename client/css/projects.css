@@ -1,0 +1,135 @@
+/* Container della griglia principale */
+.projectPage {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    box-sizing: border-box; 
+    align-items: center;
+}
+
+/* Stili comuni per le schede */
+.university {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #191919; /* colore di partenza */
+}
+
+.projects {
+    background-color: #D2B48C;
+ min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+/* Contenuto interno */
+.content-container {
+    max-width: 500px;
+    text-align: left;
+
+}
+
+
+.content-container h2,
+.content-container p {
+    background-color: transparent; /* niente sfondo proprio */
+}
+
+/* Container della griglia principale */
+.projectPage {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    box-sizing: border-box; 
+    align-items: center;
+}
+
+
+
+/* Contenuto interno */
+.content-container {
+    max-width: 500px;
+    text-align: left;
+
+}
+
+.content-container-projects {
+    max-width: 500px;
+    text-align: left;
+    background-color: #D2B48C;
+
+}
+
+.content-container-projects h2,
+.content-container-projects p {
+    background-color: #D2B48C;
+    color: #191919;
+}
+
+
+
+.uniTitle {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.uniParagraph {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+
+.project-card {
+  background-color: #191919; /* colore iniziale */
+  color: #fff; /* testo chiaro */
+  border-radius: 16px;
+  padding: 20px 25px;
+  margin-top: 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  text-align: left;
+}
+
+
+
+/* Titolo */
+.project-card h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.project-card p {
+  margin-top: 0;
+  font-size: .9rem;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+/* Paragrafi */
+.project-card p {
+  margin: 8px 0;
+  line-height: 1.4;
+  background: transparent; /* nessun blocco bianco */
+}
+
+/* Link */
+.project-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  text-decoration: none;
+  background-color: transparent;
+  border: 1px solid currentColor;
+    color: #fff;
+}
+
