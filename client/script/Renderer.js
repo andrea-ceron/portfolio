@@ -1,3 +1,5 @@
+import eventManager from "./eventHelper.js"
+
 class Renderer{
     async displayHTML(HTMLPathNavigation= "", HTMLPathMain ){
         let mainDiv = document.querySelector('#app');
@@ -10,17 +12,15 @@ class Renderer{
             let htmlNav = await this.fetchPages(HTMLPathNavigation);
             navDiv.innerHTML = htmlNav;
         }
-
+        eventManager.dispatchCustomEvent(`RenderingPageCompleted/`);
     }
 
     async loadScript(path) {
-        console.log(path)
         return new Promise((resolve, reject) => {
             if (document.querySelector(`script[src="${path}"]`)) {
                 resolve();
                 return;
             }
-
             const script = document.createElement("script");
             script.type = "module";  
             script.src = path;

@@ -1,7 +1,5 @@
 class EventHelper{
-    // each element has 
     listOfListeners = new Map();
-
 
     attachEventListener(triggerElement, type, func){
         triggerElement.addEventListener(type, func);
@@ -15,14 +13,18 @@ class EventHelper{
 
     }
 
-    createNewEvent(label){
-        const event = new Event(label);
+    createNewEvent(label, props){
+        const event = new CustomEvent(label,{
+            detail:{
+                page: props
+            }
+        });
         this.listOfListeners.set(label, event);
-        console.log(`Evento ${label} aggiunto`);
     }
 
     dispatchCustomEvent(label){
         try{
+            console.log(label)
             let event = this.listOfListeners.get(label);
             document.dispatchEvent(event);
         }catch(err){
@@ -34,4 +36,4 @@ class EventHelper{
 var eventManager = new EventHelper();
 export default eventManager;
 
-//singleton
+//singleton 

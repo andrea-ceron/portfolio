@@ -14,12 +14,12 @@ class Router {
 
     loadPage(){
         let path = window.location.pathname;
+        let lable = `RenderingPageCompleted${path}`
+        eventManager.createNewEvent(lable, path);
         let filePaths = routes.getRoutes(path);
-        console.log(filePaths)
-        renderer.displayHTML(filePaths.navigationComponent, filePaths.mainComponent);
         if(filePaths.script)
             renderer.loadScript(filePaths.script);
-
+        renderer.displayHTML(filePaths.navigationComponent, filePaths.mainComponent);
     }
     
 }
