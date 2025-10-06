@@ -14,8 +14,7 @@
     justify-content: center;
     align-items: center;
     padding: 40px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: #191919; /* colore di partenza */
+    background-color: #191919; 
 }
 
 .projects {

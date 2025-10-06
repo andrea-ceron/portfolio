@@ -1,92 +1,144 @@
-/* Reset di base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+/* --- Sezione Progetti --- */
+.projects-section {
+    background-color: #191919;
+    padding: 40px 20px;
+    min-height: 100vh;
+    color: #d1a161;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
-/* Corpo della pagina */
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
-}
-
-/* Header */
-header {
-    background-color: #fff;
-    padding: 20px;
+/* Titolo della sezione */
+.projects-title {
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
     font-size: 2.5rem;
-    color: #333;
+    margin-bottom: 40px;
+    border-bottom: 2px solid #d1a161;
+    display: inline-block;
+    padding-bottom: 10px;
 }
 
-header p {
-    font-size: 1.1rem;
-    color: #666;
-}
-
-/* Lista delle app */
+/* Griglia delle card */
 .app-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 20px;
-    padding: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    align-items: start;
 }
 
-/* Singolo elemento dell'app */
-.app-item {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
+/* Container della griglia (NUOVO STILE) */
+.projects-grid {
+    display: grid;
+    /*
+    Questa linea crea colonne responsive:
+    - auto-fill: continua a riempire la riga con le colonne.
+    - minmax(320px, 1fr): ogni colonna ha una dimensione minima di 320px,
+      ma si espande per occupare uno spazio equo (1fr) se c'è più spazio.
+    */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px; /* Spazio tra gli elementi della griglia */
+    padding: 20px 0;
+    max-width: 1200px; /* Limita la larghezza massima per una migliore lettura */
+    margin: 0 auto; /* Centra il container */
 }
 
-.app-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 15px;
+/* Migliora l'aspetto delle card per la griglia */
+.project-item {
+    padding: 25px;
+    border-radius: 10px;
+    background-color: #2b2a2a; /* Colore di sfondo leggermente diverso */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Assicurati che ogni elemento occupi l'intera altezza del suo slot */
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between; /* Spinge i bottoni in basso */
+    height: 100%; /* Importante per l'allineamento in griglia */
+    transition: transform 0.3s ease;
 }
 
-.app-item h2 {
+.project-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.project-desc {
+    flex-grow: 1; /* Permette alla descrizione di occupare lo spazio rimanente */
+    margin-bottom: 20px;
+}
+
+/* Titolo progetto */
+.project-name {
+    margin: 0 0 20px 0;
     font-size: 1.5rem;
-    color: #333;
-    margin-bottom: 10px;
+    background-color: #2b2a2a; /* Colore di sfondo leggermente diverso */
+
 }
 
-.app-item p {
-    font-size: 1rem;
-    color: #666;
+/* Descrizione */
+.project-desc {
+    margin: 0 0 10px 0;
+    line-height: 1.4;
+        background-color: #2b2a2a; /* Colore di sfondo leggermente diverso */
+
+}
+
+/* Stack tecnologico */
+.project-stack {
+    font-size: 0.95rem;
     margin-bottom: 15px;
+    opacity: 0.85;
+            background-color: #2b2a2a; /* Colore di sfondo leggermente diverso */
+
 }
 
-.app-item a {
-    font-size: 1rem;
-    color: #007bff;
+/* Pulsanti */
+.project-buttons {
+    margin-top: 10px;
+            background-color: #2b2a2a; /* Colore di sfondo leggermente diverso */
+
+}
+
+.project-buttons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    padding: 8px 14px;
+    border-radius: 8px;
     text-decoration: none;
+    background-color: #d1a161;
+    color: #000000;
+    transition: all 0.2s ease;
+}
+
+.project-buttons a:hover {
+    background-color: transparent;
+    color: #d1a161;
+    border: 1px solid #d1a161;
+}
+
+/* Stack come tag */
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+                background-color: #2b2a2a; /* Colore di sfondo leggermente diverso */
+
+}
+
+.tech-tag {
+    background-color: #191919;
+    color: #d1a161;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
     font-weight: bold;
-}
-
-.app-item a:hover {
-    text-decoration: underline;
-}
-
-/* Footer */
-footer {
-    background-color: #fff;
-    text-align: center;
-    padding: 10px;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed;
-    bottom: 0;
-    width: 100%;
+    border: 1px solid #d1a161;
+    text-transform: uppercase;
 }

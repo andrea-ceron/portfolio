@@ -1,7 +1,9 @@
 
 class HomeScript{
-    pageSections = ['introduction', 'about', 'contact']; 
+    pageSections = ['introduction', 'about','githubProjects' ,'contact']; 
     heightSectionsPage = [];
+
+
     
 
     triggerHomeScriptAction(labelEvent){
@@ -14,7 +16,6 @@ class HomeScript{
         console.log("rendering")
         let height = this.findSectionHeight();
         this.heightSectionsPage = height;
-        
         window.addEventListener("scroll",()=>{
             this.alterCSSNavbarOnScroll(window.scrollY);
         })
@@ -79,7 +80,6 @@ window.addEventListener("RenderingPageCompleted", (e) => {
 
 
   if ( e.detail.path === "" || e.detail.path === "introduction" || e.detail.path === "about") {
-    console.log("Mario ha fatto login con successo!");
     homeScript.triggerHomeScriptAction(e.detail.path);
   }
 });
