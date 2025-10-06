@@ -1,6 +1,6 @@
 
 class HomeScript{
-    pageSections = ['introduction', 'about', 'contacts']; 
+    pageSections = ['introduction', 'about', 'contact']; 
     heightSectionsPage = [];
     
 
