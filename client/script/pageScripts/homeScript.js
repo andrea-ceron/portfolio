@@ -1,26 +1,24 @@
-import eventManager from "../eventHelper.js"
 
 class HomeScript{
-    pageSections = ['introduction', 'about']; 
+    pageSections = ['introduction', 'about', 'contacts']; 
     heightSectionsPage = [];
-    constructor(){
-        console.log("entro costruttoire HomeScript")
-        eventManager.attachEventListener(window,"hashchange",()=>{
-            let hash = window.location.hash;
-            let hashUrl = `${hashFromURL}Nav`
-            this.alterCSSNavbarOnClick(hashUrl);
-        });
-        eventManager.attachEventListener(document,"RenderingPageCompleted/",()=>{
-            console.log("rendering")
-            for(let section of this.pageSections){
-                let height = this.findSectionHeight();
-                this.heightSectionsPage = height;
-            }
-            eventManager.attachEventListener(window,"scroll",()=>{
-                this.alterCSSNavbarOnScroll(window.scrollY);
-            });
-        });
-    } 
+    
+
+    triggerHomeScriptAction(labelEvent){
+        let hashUrl
+        if (labelEvent === "")
+            hashUrl = `#introductionNav`
+        else 
+            hashUrl = `#${labelEvent}Nav`
+        this.alterCSSNavbarOnClick(hashUrl);
+        console.log("rendering")
+        let height = this.findSectionHeight();
+        this.heightSectionsPage = height;
+        
+        window.addEventListener("scroll",()=>{
+            this.alterCSSNavbarOnScroll(window.scrollY);
+        })
+    }
 
     findSectionHeight(){
         let res = []
@@ -34,7 +32,6 @@ class HomeScript{
 
     alterCSSNavbarOnClick(hashUrl){
         for(let linkId of this.pageSections){
-            console.log(`#${linkId}Nav`, hashUrl)
             let navLink = document.querySelector(`#${linkId}Nav`);
             if (!navLink) continue;
             if(`#${linkId}Nav` === hashUrl){
@@ -42,7 +39,6 @@ class HomeScript{
             }
             else{
                 navLink.className = "unactive";
-
             }
         }
     }
@@ -78,4 +74,16 @@ class HomeScript{
 }
 
 var homeScript = new HomeScript();
+
+window.addEventListener("RenderingPageCompleted", (e) => {
+
+
+  if ( e.detail.path === "" || e.detail.path === "introduction" || e.detail.path === "about") {
+    console.log("Mario ha fatto login con successo!");
+    homeScript.triggerHomeScriptAction(e.detail.path);
+  }
+});
+
+
+
 export default homeScript;

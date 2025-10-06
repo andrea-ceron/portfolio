@@ -1,28 +1,38 @@
-import eventManager from "./eventHelper.js"
-import renderer from "./Renderer.js"
-import routes from "./Routes.js"
+import renderer from "./Renderer.js";
+import routes from "./Routes.js";
 
 class Router {
-    constructor() {
-        eventManager.createNewEvent("URLOnChange");
-        eventManager.attachEventListener(document,"URLOnChange",()=>{
-            this.loadPage()
-        });
+  constructor() {
+    console.log("Router inizializzato");
 
-        eventManager.dispatchCustomEvent("URLOnChange");
-    }
+    this.loadPage();
+    window.addEventListener("hashchange", () => {
+        console.log("hash cambiato")
+      router.loadPage();
+    });
 
-    loadPage(){
-        let path = window.location.pathname;
-        let lable = `RenderingPageCompleted${path}`
-        eventManager.createNewEvent(lable, path);
-        let filePaths = routes.getRoutes(path);
-        if(filePaths.script)
-            renderer.loadScript(filePaths.script);
-        renderer.displayHTML(filePaths.navigationComponent, filePaths.mainComponent);
+  }
+
+    async loadPage() {
+        const path = window.location.hash.slice(1) || "";
+        
+        const filePaths = routes.getRoutes(path);
+        if (this.currentPath === filePaths.parentTag) {
+            console.log("Stessa pagina, non ricarico");
+            return;
+        }
+        this.currentPath = filePaths.parentTag;
+
+        await renderer.displayHTML(filePaths.navigationComponent, filePaths.mainComponent, filePaths.styles || []);
+
+        if (filePaths.script) {
+            await renderer.loadScript(filePaths.script);
+        }
+
+        window.dispatchEvent(new CustomEvent("RenderingPageCompleted", { detail: { path } }));
     }
-    
 }
 
-var router = new Router();
+const router = new Router();
+
 export default router;

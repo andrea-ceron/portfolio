@@ -1,19 +1,61 @@
-import eventManager from "./eventHelper.js"
 
 class Renderer{
-    async displayHTML(HTMLPathNavigation= "", HTMLPathMain ){
-        let mainDiv = document.querySelector('#app');
-        let navDiv  = document.querySelector('#navbar');
-
-        let htmlMain = await this.fetchPages(HTMLPathMain);
-        
-        mainDiv.innerHTML = htmlMain;
-        if(HTMLPathNavigation){
-            let htmlNav = await this.fetchPages(HTMLPathNavigation);
-            navDiv.innerHTML = htmlNav;
-        }
-        eventManager.dispatchCustomEvent(`RenderingPageCompleted/`);
+    async loadStyle(path) {
+        return new Promise((resolve, reject) => {
+            if (document.querySelector(`link[href="${path}"][data-dynamic-css]`)) {
+                resolve();
+                return;
+            }
+            const link = document.createElement("link");
+            link.rel = "stylesheet"; 
+            link.href = path;
+            link.setAttribute('data-dynamic-css', 'true');
+            link.onload = () => resolve();
+            link.onerror = () => reject(new Error(`Errore nel caricamento CSS: ${path}`));
+            document.head.appendChild(link);
+        });
     }
+
+    async displayHTML(HTMLPathNavigation = "", HTMLPathMain, stylePaths = []) {
+        const mainDiv = document.querySelector('#app');
+        const navDiv = document.querySelector('#navbar');
+                
+        mainDiv.classList.remove('visible');
+        navDiv.classList.remove('visible');
+        
+        const promises = [];
+        
+        promises.push(this.fetchPages(HTMLPathMain));
+
+        let htmlNavPromise = null;
+        if (HTMLPathNavigation) {
+            htmlNavPromise = this.fetchPages(HTMLPathNavigation);
+            promises.push(htmlNavPromise);
+        }
+
+        for (const path of stylePaths) {
+            promises.push(this.loadStyle(path));
+        }
+
+        const results = await Promise.all(promises);
+        
+        const htmlMain = results[0]; 
+        let htmlNav = HTMLPathNavigation ? results[1] : null;
+
+        mainDiv.innerHTML = htmlMain;
+
+        if (HTMLPathNavigation) {
+            let navIndex = HTMLPathNavigation ? 1 : 0;
+            if(HTMLPathNavigation) {
+                navDiv.innerHTML = results.find(r => r === htmlNav) || results[1];
+            }
+        }
+        requestAnimationFrame(() => {
+            mainDiv.classList.add('visible');
+            navDiv.classList.add('visible');
+        });
+    }
+
 
     async loadScript(path) {
         return new Promise((resolve, reject) => {
