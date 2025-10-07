@@ -1,10 +1,11 @@
-/* Container della griglia principale */
+/* Container della griglia principale: Assicura la divisione 50/50 */
 .projectPage {
     min-height: 100vh;
     display: grid;
+    /* Questa riga garantisce due colonne di uguale larghezza */
     grid-template-columns: repeat(2, 1fr); 
     box-sizing: border-box; 
-    align-items: center;
+    /* align-items: center; può essere rimosso o mantenuto in base al posizionamento verticale desiderato */
 }
 
 /* Stili comuni per le schede */
@@ -31,7 +32,6 @@
 
 /* Contenuto interno */
 .content-container {
-    max-width: 500px;
     text-align: left;
 
 }
@@ -55,13 +55,11 @@
 
 /* Contenuto interno */
 .content-container {
-    max-width: 500px;
     text-align: left;
 
 }
 
 .content-container-projects {
-    max-width: 500px;
     text-align: left;
     background-color: #D2B48C;
 
@@ -130,5 +128,198 @@
   background-color: transparent;
   border: 1px solid currentColor;
     color: #fff;
+}
+
+
+.flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    background-color: #D2B48C;
+}
+
+/* 2B: Stili Stack Tecnologico (tech-stack-section) */
+.tech-stack-section {
+    background-color: #D2B48C; /* Colore di contrasto */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+
+.content-container-stack {
+    text-align: left;
+    color: #191919;
+}
+
+.stackTitle {
+    padding-bottom: 30px;
+    font-size: 2.5rem;
+    /* Rimuovi sfondi indesiderati */
+    background-color: #D2B48C; 
+        color: #191919;
+
+}
+
+.skill-card {
+    background-color: #191919; 
+    color: #fff; 
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    border-bottom: 4px solid #d1a161; /* Dettaglio giallo/oro */
+    min-width: 500px;
+    min-height: 250px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px; 
+
+}
+
+.skill-card h3 {
+    font-size: 1.2rem;
+    margin-top: 0;
+}
+
+.skill-card p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    background: transparent;
+}
+
+.skill-card a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #d1a161; /* Usa il colore del bordo per il link */
+    border: 1px solid #d1a161;
+    transition: background-color 0.3s;
+}
+
+.skill-card a:hover {
+    background-color: #d1a161;
+    color: #191919;
+}
+
+/* Stili per l'altra sezione */
+.content-container {
+    text-align: left;
+    /* ... (altri stili) ... */
+}
+
+.carousel-dots-container {
+    display: flex;
+    justify-content: center; 
+    padding-right: 40px; 
+        background-color: #D2B48C;
+
+}
+
+/* Stili per il singolo pallino (dot) */
+.dot {
+    width: 10px;
+    height: 10px;
+    margin: 0 6px;
+    background-color: #808080; /* Colore grigio (inattivo) */
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+/* Stile per il pallino attivo */
+.dot.active {
+    background-color: #191919; /* Colore scuro (attivo) */
+    transform: scale(1.2); /* Lo ingrandisce leggermente */
+}
+
+/* Nuovo contenitore per facilitare il posizionamento assoluto delle frecce */
+.carousel-wrapper {
+    position: relative; /* Base per il posizionamento assoluto delle frecce */
+    padding: 0 40px; /* Aggiunge spazio laterale per le frecce */
+}
+
+/* Nascondi la barra di scorrimento del carousel per fare spazio alle frecce */
+.skill-carousel {
+    /* ... mantieni gli stili esistenti ... */
+    overflow-x: auto;
+    /* Rendi le schede non strettamente adiacenti ma che mostrino lo scorrimento */
+    gap: 20px;
+    
+    /* Aggiungi questa riga per il layout: */
+    flex-wrap: nowrap; /* Assicura che rimangano in riga */
+        background-color: #D2B48C;
+
+    /* Aggiungi padding laterale se il wrapper non funziona (opzionale) */
+    /* padding: 10px 0; */ 
+    
+    /* Aggiusta il comportamento della singola skill-card */
+}
+
+/* Nuovo contenitore per l'allineamento orizzontale */
+.flex {
+    display: flex;
+    align-items: center; /* Centra verticalmente gli elementi (frecce e carosello) */
+    gap: 15px; /* Spazio tra le frecce e il carosello */
+    width: 100%; /* Occupa tutta la larghezza disponibile */
+        background-color: #D2B48C;
+
+    /* Nota: Se skill-carousel deve scorrere, 
+       potresti aver bisogno di 'overflow: hidden;' qui
+       o di assegnare una larghezza fissa al skill-carousel.
+    */
+}
+
+
+
+/* Stili per la Freccia (li ho semplificati un po') */
+.arrow {
+    cursor: pointer;
+    z-index: 10; 
+    font-size: 2.0rem; /* Un po' più piccolo se sono inline */
+    color: #191919; 
+    user-select: none;
+    padding: 5px; /* Aggiunge un'area cliccabile */
+    /* Rimuovi position: absolute/relative se le lasci INLINE con Flexbox */
+        background-color: #D2B48C;
+
+    /* Non è necessario specificare left/right qui, Flexbox le posiziona */
+}
+
+.arrow:hover {
+    color: #6d5b41;
+}
+
+/* Modifica gli stili esistenti per .skill-carousel */
+.skill-carousel {
+    flex-grow: 1; /* Mantiene la capacità di espandersi tra le frecce */
+        background-color: #D2B48C;
+
+    /* *************************************** */
+    /* NUOVE REGOLE PER CENTRARE L'ELEMENTO INTERNO */
+    /* *************************************** */
+    display: flex;        /* Abilita Flexbox all'interno */
+    justify-content: center; /* Centra orizzontalmente il contenuto */
+    align-items: center;     /* Centra verticalmente il contenuto (opzionale, ma consigliato) */
+    
+    /* IMPORTANTE: Disabilita lo scorrimento, dato che l'obiettivo è centrare */
+    overflow-x: hidden; 
+    
+    /* Rimuovi l'eventuale gap se non vuoi spazio tra elementi */
+    /* gap: 0; */ 
+
+    /* Rimuovi gli stili originali se presenti e in conflitto (es. scrollbar-width) */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* .skill-carousel::-webkit-scrollbar { display: none; } */
+    
+    /* Se hai bisogno di un'altezza minima per il carosello: */
+    min-height: 250px; /* Sostituisci con l'altezza necessaria */
 }
 

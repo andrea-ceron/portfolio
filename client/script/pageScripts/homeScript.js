@@ -1,10 +1,81 @@
+import contentCards from "../helper/contentCards.js";
 
 class HomeScript{
     pageSections = ['introduction', 'about','githubProjects' ,'contact']; 
     heightSectionsPage = [];
+    contentCardsIndex = 0;
 
+    setOnClickListener(){
+        let rightClickElem = document.getElementById("right-arrow")
+        console.log(rightClickElem)
+                    let elem = document.getElementById("skill-card");
 
-    
+        rightClickElem.addEventListener("click", (e)=>{
+            const actionValueData = e.currentTarget.dataset.action; 
+
+            this.displayContentCards(actionValueData);
+        })
+        let leftClickElem = document.getElementById("left-arrow")
+        leftClickElem.addEventListener("click", (e)=>{
+            const actionValueData = e.currentTarget.dataset.action; 
+
+            this.displayContentCards(actionValueData);
+        })
+    }
+    checkButtonClicked(){
+        
+    }
+
+    displayContentCards(navigation = 0){
+        let content = contentCards.getContent();
+        let index = parseInt(navigation)
+        console.log(typeof index)
+        if(this.contentCardsIndex + index < 0 || this.contentCardsIndex + index > content.length-1){
+            return;
+        }
+        if(this.contentCardsIndex+ index === 1 ){
+             let leftArrow = document.getElementById("left-arrow");
+            leftArrow.style.color = '#191919';
+        }  
+        if(this.contentCardsIndex+ index === content.length-2){
+            let rightArrow = document.getElementById("right-arrow");
+            rightArrow.style.color = '#191919';
+        }
+        this.contentCardsIndex += index
+        console.log(this.contentCardsIndex)
+
+        console.log(content)
+        let objectToDisplay = content[this.contentCardsIndex];
+        let elem = document.getElementById("skill-card");
+        elem.innerHTML = '';
+
+        const titleElement = document.createElement('h3');
+        titleElement.textContent = objectToDisplay.title; 
+
+        const descElement = document.createElement('p');
+        descElement.textContent = objectToDisplay.desc;
+
+        const techElement = document.createElement('p');
+        techElement.innerHTML = `<strong>${objectToDisplay.technologies}</strong>`; 
+
+        const linkElement = document.createElement('a');
+        linkElement.href = objectToDisplay.linkUrl;
+        linkElement.textContent = objectToDisplay.linkText;
+        linkElement.target = '_blank'; 
+
+        elem.appendChild(titleElement);
+        elem.appendChild(descElement);
+        elem.appendChild(techElement);
+        elem.appendChild(linkElement);
+        if(this.contentCardsIndex === 0 ){
+            let leftArrow = document.getElementById("left-arrow");
+            leftArrow.style.color = '#D2B48C';
+        }
+        if(this.contentCardsIndex === content.length-1){
+            let rightArrow = document.getElementById("right-arrow");
+            rightArrow.style.color = '#D2B48C';
+        }
+    }
 
     triggerHomeScriptAction(labelEvent){
         let hashUrl
@@ -44,7 +115,6 @@ class HomeScript{
         }
     }
 
-
     alterCSSNavbarOnScroll(scrollY) {
         let cumulativeHeight = 0;
         let sectionIndex = 0;
@@ -75,12 +145,11 @@ class HomeScript{
 }
 
 var homeScript = new HomeScript();
-
 window.addEventListener("RenderingPageCompleted", (e) => {
-
-
   if ( e.detail.path === "" || e.detail.path === "introduction" || e.detail.path === "about") {
     homeScript.triggerHomeScriptAction(e.detail.path);
+    homeScript.displayContentCards();
+    homeScript.setOnClickListener();
   }
 });
 
