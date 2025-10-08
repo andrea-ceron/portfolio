@@ -5,14 +5,14 @@ class ContentCards{
             desc: "Describing the development process that leads me from requirements gathering to testing",
             technologies: "",
             linkText: "Read Article", 
-            linkUrl: "http://localhost:5500#article-1" 
+            linkUrl: "#article-1" 
         },
         {
             title: "My approach to Documentation", 
             desc: "Explaining my approach to documantation, by also providing examples",
             technologies: "",
             linkText: "Read Article", 
-            linkUrl: "http://localhost:5500#article-2" 
+            linkUrl: "#article-2" 
         }
     ]
 
