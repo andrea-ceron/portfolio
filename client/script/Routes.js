@@ -49,6 +49,7 @@ class Routes{
         let res = this.routesMap.get(path);
         console.log(path, res)
         if (res === undefined) {
+            window.location.hash = "";
         console.log("nessun elemento");
         return this.routesMap.get('');
         }
