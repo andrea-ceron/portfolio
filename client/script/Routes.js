@@ -37,6 +37,13 @@ class Routes{
                 styles: ['../css/blogArticle.css', '../css/nav.css'] 
             }
         ]
+       ,[
+            'ERPArticle',{
+               mainComponent:'pages/ERPArticle.html',
+               navigationComponent: 'components/navigationArticle.html',
+                styles: ['../css/blogArticle.css', '../css/nav.css'] 
+            }
+        ]
     ]);        
     getRoutes(path){
         let res = this.routesMap.get(path);

@@ -1,6 +1,4 @@
-/* --- Stili per l'articolo del blog sul Processo di Sviluppo (Tema Scuro) --- */
 
-/* 1. Contenitore Principale dell'Articolo */
 .app-list {
     /* Centra e limita la larghezza del testo per migliorarne la leggibilità */
     max-width: 900px; 
@@ -115,10 +113,9 @@
 }
 
 
-/* 8. Correzioni di spaziatura per paragrafi adiacenti (Implementation) */
-/* Questo corregge il paragrafo diviso di "Implementation and Coding" */
+
 .app-list h3:nth-of-type(3) + p + p {
-    margin-top: -10px; /* Riduce lo spazio tra i due paragrafi adiacenti */
+    margin-top: -10px; 
 }
 
 .app-list a {

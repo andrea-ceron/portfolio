@@ -1,0 +1,59 @@
+<section class="app-list">
+    <h2>Microservices Architecture</h2>
+    
+    <h3>The Kafka Utility Library: Ensuring Asynchronous Resilience</h3>
+    <p>My microservice architecture relies on a shared utility library, Kafka.Utility, which centralizes all asynchronous communication logic and ensures a consistent, event-driven architecture across the system. This library provides a unified approach for creating and managing all necessary Kafka Clients (Admin, Producer, and Consumer) through a Dependency Injection setup. Crucially, the library implements advanced patterns for reliability and resilience:</p>
+
+    <h3>Key Features and Resilience</h3>
+    <p><strong>Reliable Production (Transactional Outbox):</strong> Message production is guaranteed via the Transactional Outbox Pattern. The ProducerServiceWithSubscription first records the message in a database table (TransactionalOutbox) before publishing it to Kafka, ensuring data integrity and consistency between the service's state and its external events.</p>
+    <p><strong>Asynchronous Consumption :</strong> Consumption is managed by the ConsumerServiceWithSubscription, which asynchronously reads messages and maps them to specific business logic via the OperationMessageHandler.</p>
+    <p><strong>Inter-Service Coherence :</strong> The library defines various operation types, including dedicated Compensation Operations (e.g., Compensate Delete), used solely to ensure inter-service coherence in the event of processing failures, adhering to distributed transaction principles.</p>
+    <p><strong>Error and Resilience Management:</strong> Resilience is secured by a Circuit Breaker implementation, which automatically retries failed message execution a predetermined number of times. Centralized error handling is provided via the ErrorManagerMiddleware.</p>
+
+    
+    <a href="https://github.com/andrea-ceron/Kafka" target="_blank">Kafka Library</a>
+
+    <h3>Customer Manager Microservice</h3>
+    <p>
+       The Customer Manager microservice is the system's client-facing domain, responsible for all interactions related to customers. Its core responsibility is managing customer data (client master files) and financial records, including invoice registration. 
+       To maintain operational awareness, it holds a localized copy of the finished product catalog, which is synchronized and maintained by the Stock Manager microservice.
+    </p>
+    <a href="https://github.com/andrea-ceron/CustomerManager" target="_blank">Customer Manager Repo</a>
+    
+
+    <h3>Stock Manager Microservice</h3>
+    <p>The Stock Manager is responsible for the finished product lifecycle and production management. 
+        This service oversees the manufacturing process, defining which raw materials are required for each finished product. 
+        While it defines these material needs, it relies on the Purchase Manager to manage the raw material inventory and procurement, ensuring separation of concerns within the supply chain.
+    </p>
+        <a href="https://github.com/andrea-ceron/StockManager" target="_blank">Stock Manager Repo</a>
+
+    <h3>Purchase Manager Microservice</h3>
+    <p>The Purchase Manager handles the external supplier relationship domain. 
+        Its responsibilities include managing supplier master files, tracking raw materials associated with those suppliers, and processing all necessary purchase orders. 
+        This service acts as the source of truth for all incoming materials required to support the Stock Manager's production demands.
+    </p>
+    <a href="https://github.com/andrea-ceron/PurchaseManager" target="_blank">Purchase Manager Repo</a>
+
+    <h3>Communication Patterns</h3>
+    <p>Inter-service communication utilizes a dual approach to ensure efficiency and data consistency:</p>
+
+
+
+    <p>       <strong>Asynchronous Communication (Kafka):</strong> 
+         This pattern is employed for event notification and data synchronization across services. 
+        Specifically, the registration of a new raw material (by Purchase Manager) or a new finished product (by Stock Manager) triggers a Kafka message to update the relevant service (Stock Manager and Customer Manager, respectively). 
+        This ensures eventual consistency with minimal coupling.
+    </p>
+    <p>       <strong>Synchronous Communication (HTTP):</strong> 
+         This pattern is reserved for direct, transactional processes such as the product creation workflow. If a client places an order that depletes the finished product stock, the Customer Manager initiates an HTTP request to the Stock Manager to create more product. This process is cascaded down to the Purchase Manager if raw materials are insufficient, and the final order fulfillment status propagates back up the stack.
+    </p>
+    
+
+    <!-- CONCLUSIONE -->
+    <p>This architecture was designed to directly confront two key distributed challenges: maintaining data consistency across database instances and managing systemic instability.
+I ensured reliability using the Transactional Outbox Pattern within the Kafka Utility Library to manage eventual consistency. Furthermore, system resilience against failures is guaranteed by implementing a Circuit Breaker.  </p>
+</section>
+
+
+<link rel="stylesheet" href="../css/blogArticle.css"> 
