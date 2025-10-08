@@ -6,7 +6,7 @@ class Routes{
                 navigationComponent: 'components/navigation.html', 
                 script: 'script/pageScripts/homeScript.js',
                 parentTag: 'home',
-                styles: ['../css/home.css', '../css/nav.css'] 
+                styles: ['../css/home.css', '../css/nav.css']  
             }
         ],[
             'introduction',{ 
