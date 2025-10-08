@@ -1,17 +1,14 @@
-.home{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-        flex-direction: column;
-    padding-bottom: 3rem;
-
-}
-
 .button__p__home{
    background-color: transparent;
    color: var(--container-color);
     margin-right: 5px;
+}
+
+.home__data{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .button__home{
@@ -39,7 +36,7 @@
     background-size: cover;
     width: 100px;
     height: 100px;
-    border-radius:  100%;
+    border-radius: 100%;
     border: 2px solid #7e7e7e;
     -webkit-box-shadow: 0px 0px 12px 2px #303030;
     -moz-box-shadow: 0px 0px 12px 2px #303030;
@@ -91,43 +88,62 @@
   
   
   
-  .typewriter{
-    overflow: hidden;
-    white-space: nowrap;
-    display: inline-block;
-    position: relative;
-    animation-duration: 10s;
-    animation-timing-function: steps(30, end);
-    animation-iteration-count: infinite;
-  }
+
+
+  /* ----------------------------------------------------------------------- */
+  /* Container principale */
+.home{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 3rem;
+    box-sizing: border-box; /* Aggiunto per evitare overflow con padding */
+}
+
+/* Titoli e Testo (Verranno ridotti sotto) */
+.home__title, .home__description{
+    text-align: center;
+}
+
+.home__title{
+    font-size: var(--h2-font-size);
+    font-weight: 400;
+    margin-bottom: 5px;
+}
+
+
+
+/* ... (Altri stili minori come button__p__home, weight__text, ecc. omessi per brevità) ... */
   
-  .typewriter::after {
-    content: "|";
-    position: absolute;
-    animation: caret infinite;
-    animation-duration: 1s;
-    animation-timing-function: steps(1, end);
-  }
-  
-  @keyframes typewriter1 {
-    0%,
-    90%,
-    100% {
-      width: 0;
+
+
+  @media screen and (max-width: 1080px) {
+    
+    .home {
+        /* Riduci il padding verticale per guadagnare spazio */
+        padding-bottom: 2rem;
+                        display: flex;
+                align-items: center;
+                justify-content: center;
     }
-    10%,
-    85% {
-      width: 360px;
+
+    /* Riduci l'immagine del profilo */
+    .home__img {
+        width: 80px;
+        height: 80px;
     }
-  }
-  
-  @keyframes caret {
-    0%,
-    100% {
-      opacity: 0;
+
+    /* Riduci la dimensione del titolo */
+    .home__title {
+        /* Sostituisci la variabile con un valore più piccolo e gestibile */
+        font-size: 1.8rem; 
+        margin-bottom: 3px;
     }
-    50% {
-      opacity: 1;
-    }
-  }
-  
+
+
+
+
+
+}

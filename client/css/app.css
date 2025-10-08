@@ -87,6 +87,9 @@ html{
 
 }
 
+
+
+
 body,button,input, textarea{
     font-family: var(--montserrat);
     font-size: var(--normal-font-size);
@@ -95,6 +98,8 @@ body,button,input, textarea{
 body{
     background-color: var(--body-color);
     color: var(--text-color);
+        overflow-x: hidden; 
+
 }
 
 h1,h2,h3{
@@ -133,9 +138,6 @@ img{
     height: auto;
 }
 
-.section{
-    padding: 6rem 0 2rem;
-}
 
 .section__title{
     font-size: var(--h1-font-size);
@@ -156,12 +158,7 @@ img{
 }
 
 
-/* ======= LAYOUT ======= */
-.container{
-    max-width: 968px;
-    margin-left: auto;
-    margin-right: auto;
-}
+
 
 .grid{
     display: grid;
@@ -195,24 +192,6 @@ img{
 }
 
 
-
-/* ====== BREAKPOINTS ======== */
-@media screen and (max-width: 992px){
-
-}
-
-@media screen and (max-width: 768px){
-    
-}
-
-@media screen and (max-width: 576px){
-    
-}
-
-@media screen and (max-width: 350px){
-    
-}
-
 .footer{
     height: 100px;
 }
@@ -220,3 +199,85 @@ img{
 ::-webkit-scrollbar{width:7px}
 ::-webkit-scrollbar-track{background:#303030;border-radius:0px}
 ::-webkit-scrollbar-thumb{background:#9b9b9b;border: radius 7px}
+
+/* ---------------------------------- */
+/* ======= LAYOUT ======= */
+.container{
+    max-width: 968px; /* OK per desktop */
+    margin-left: auto;
+    margin-right: auto;
+    /* Aggiungo un padding orizzontale di base per evitare che il contenuto
+       tocchi i bordi dello schermo sui desktop più piccoli */
+    padding: 0 1.5rem; 
+}
+
+/* Modifica la sezione per ridurre il padding su mobile */
+.section{
+    /* padding: 6rem 0 2rem; - Molto grande per mobile */
+    padding: 4rem 0 2rem; /* Leggera riduzione di default */
+}
+
+@media screen and (max-width: 768px){
+    /* Riduci la larghezza massima del contenitore */
+
+
+    /* Riduci il padding delle sezioni */
+    .section{
+        padding: 3rem 0 1.5rem;
+    }
+
+    /* Riduci lo spazio sotto il sottotitolo */
+    .section__subtitle{
+        margin-bottom: 2.5rem; 
+    }
+}
+
+@media screen and (max-width: 576px){
+    
+    /* Ridimensionamento Font per Mobile */
+    :root{
+        /* SIZE */
+        --big-font-size: 2rem; 
+        --h1-font-size: 1.25rem; /* Titoli di sezione */
+        --h2-font-size: 1.1rem; /* Titoli medi */
+        --h3-font-size: 0.95rem; /* Titoli piccoli */
+        --normal-font-size: 0.9rem; /* Testo del corpo */
+        --small-font-size: 0.75rem; 
+        --smaller-font-size: 0.68rem;
+    }
+
+    /* Rimuovi la larghezza massima sul container, usa i margini */
+    .container{
+        max-width: initial; /* Lascia che sia il padding a controllare i bordi */
+        padding: 0 1rem; /* Riduci il padding laterale a 1rem */
+    }
+    
+    /* Riduzione minima di padding per le sezioni */
+    .section{
+        padding: 2.5rem 0 1.5rem;
+    }
+    
+    /* Riduci l'altezza dell'header se usi un header fisso */
+    :root {
+        --header-height: 2.5rem;
+    }
+
+    /* Pulsanti più piccoli su mobile */
+    .button{
+        padding: 0.6rem 1.1rem;
+        font-size: var(--small-font-size);
+    }
+}
+
+@media screen and (max-width: 350px){
+    .container {
+        padding: 0 0.75rem; /* Margini laterali molto stretti */
+    }
+
+    /* Riduci leggermente ancora il font del corpo se necessario */
+    :root{
+        --normal-font-size: 0.875rem; /* 14px */
+    }
+
+    /* Riduci l'immagine (già gestito da max-width: 100% per img) */
+}

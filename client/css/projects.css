@@ -1,53 +1,8 @@
-/* Container della griglia principale: Assicura la divisione 50/50 */
-.projectPage {
-    min-height: 100vh;
-    display: grid;
-    /* Questa riga garantisce due colonne di uguale larghezza */
-    grid-template-columns: repeat(2, 1fr); 
-    box-sizing: border-box; 
-    /* align-items: center; può essere rimosso o mantenuto in base al posizionamento verticale desiderato */
-}
-
-.university {
-    /* min-height: 100vh; - Già presente */
-    /* display: flex; - Già presente */
-    justify-content: center;
-    align-items: center;
-    padding: 60px 40px; /* Aumentiamo il padding verticale */
-    background-color: #191919; 
-    color: #fff; /* Assicura che il testo sia bianco per default */
-}
-
 /* Contenuto interno: Aggiungiamo un max-width per non avere linee di testo troppo lunghe */
 .content-container {
     text-align: left;
     max-width: 650px; /* Limita la larghezza del blocco di testo a una misura leggibile */
     padding: 0 20px; /* Padding interno di sicurezza */
-}
-
-/* Titolo: Rendiamolo più elegante e spazioso */
-.uniTitle {
-    /* La tua versione: font-size: 2.5rem; */
-    font-size: 3.2rem; /* Rende il titolo più grande e d'impatto */
-    margin-bottom: 25px; /* Più spazio sotto il titolo */
-    letter-spacing: -0.5px; /* Leggera compressione per un look moderno */
-    color: #fff; /* Usiamo il colore d'accento per il titolo */
-    font-weight: 700; /* Assicura che sia in grassetto */
-}
-
-/* Paragrafo: Miglioriamo la leggibilità e la scorrevolezza */
-.uniParagraph {
-    /* La tua versione: font-size: 1.2rem; */
-    font-size: 1.15rem; /* Leggermente più piccolo, ma ancora grande */
-    line-height: 1.6; /* Aumenta lo spazio tra le righe per migliorare la leggibilità (Cruciale!) */
-    margin-bottom: 30px; 
-    
-    /* Nota: Hai impostato width: 70%;. Potresti rimuoverlo 
-       se usi max-width sul content-container, rendendo il codice più pulito.
-       Se lo mantieni, assicurati che funzioni su tutti gli schermi.
-    */
-    width: 100%; /* Lascia che il max-width sul genitore gestisca la larghezza */
-    color: #f0f0f0; /* Un bianco leggermente off-white è più gradevole del bianco puro */
 }
 
 .projects {
@@ -70,14 +25,7 @@
     background-color: transparent; /* niente sfondo proprio */
 }
 
-/* Container della griglia principale */
-.projectPage {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); 
-    box-sizing: border-box; 
-    align-items: center;
-}
+
 
 
 
@@ -157,31 +105,12 @@
     background-color: #D2B48C;
 }
 
-/* 2B: Stili Stack Tecnologico (tech-stack-section) */
-.tech-stack-section {
-    background-color: #D2B48C; /* Colore di contrasto */
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-}
+
 
 .content-container-stack {
     text-align: left;
     color: #191919;
-}
-
-.stackTitle {
-    padding-bottom: 50px;
-    padding-left: 45px;
-    /* Rimuovi sfondi indesiderati */
-    background-color: #D2B48C; 
-        color: #191919;
-
-    font-size: 3.2rem; /* Rende il titolo più grande e d'impatto */
-    letter-spacing: -0.5px; /* Leggera compressione per un look moderno */
-    font-weight: 700; /* Assicura che sia in grassetto */
+    background-color: #D2B48C;
 }
 
 .skill-card {
@@ -191,8 +120,8 @@
     padding: 25px;
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
     border-bottom: 4px solid #d1a161; /* Dettaglio giallo/oro */
-    min-width: 500px;
-    min-height: 250px;
+  min-width: 300px; /* Riduciamo la dimensione minima */
+    min-height: 200px;
     display: flex;
     align-items: flex-start;
     justify-content: center;
@@ -280,7 +209,6 @@
     /* Aggiungi padding laterale se il wrapper non funziona (opzionale) */
     /* padding: 10px 0; */ 
     
-    /* Aggiusta il comportamento della singola skill-card */
 }
 
 /* Nuovo contenitore per l'allineamento orizzontale */
@@ -344,3 +272,127 @@
     min-height: 250px; /* Sostituisci con l'altezza necessaria */
 }
 
+/* ---------------------------------------------------------------------------------- */
+
+/* Container della griglia principale: Assicura la divisione 50/50 */
+.projectPage {
+    min-height: 100vh;
+    display: grid;
+    /* Struttura base: Due colonne (50/50) */
+    grid-template-columns: repeat(2, 1fr); 
+    box-sizing: border-box; 
+    align-items: center;
+    width: 100%;
+}
+
+/* Colonna Università */
+.university {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px; /* Padding per desktop */
+    background-color: #191919; 
+    color: #fff;
+}
+
+/* Colonna Tech Stack */
+.tech-stack-section {
+    background-color: #D2B48C; 
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px; /* Padding per desktop */
+}
+
+/* Titoli e Contenuto Generico (Preparati per la riduzione) */
+.uniTitle, .stackTitle {
+    font-size: 3.2rem;
+    letter-spacing: -0.5px;
+    font-weight: 700;
+    padding-bottom: 1rem;
+}
+
+.stackTitle{
+    background-color: #D2B48C;
+    color: #191919;
+    justify-self: center;
+}
+
+.uniParagraph {
+    font-size: 1.15rem;
+    line-height: 1.6;
+}
+
+@media screen and (max-width: 1200px) {
+    
+    /* Regola Cruciale: Forza la griglia su una singola colonna */
+    .projectPage {
+        /* Una colonna unica a tutta larghezza */
+        grid-template-columns: 1fr; 
+        /* Rimuoviamo la min-height: 100vh affinché i due blocchi si
+           adattino alla dimensione del contenuto e non forzino due 100vh in pila.
+           Ogni blocco university/tech-stack-section deve ora avere la sua min-height. */
+        min-height: 50vh; 
+    }
+
+    /* Regola cruciale: Min-height per le singole sezioni su mobile */
+    .university,
+    .tech-stack-section {
+        /* Assicuriamo che la sezione sia alta almeno quanto la viewport, 
+           o lasciamo che il contenuto la determini (initial/auto) */
+        padding: 40px 20px; /* Riduci il padding laterale e verticale */
+        min-height: 70vh;
+
+    }
+    
+    /* Riduci le dimensioni dei titoli */
+    .uniTitle, 
+    .stackTitle {
+        /* Usa 'clamp' o 'vw' per un ridimensionamento fluido */
+        font-size: clamp(2rem, 6vw, 2.8rem); 
+        margin-bottom: 10px;
+    }
+
+    /* Riduci la dimensione del testo dei paragrafi */
+    .uniParagraph {
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+    
+    /* Aggiusta il padding per il titolo Stack */
+    .stackTitle {
+        padding-left: 0; /* Rimuovi il padding extra dato in precedenza */
+        padding-bottom: 30px;
+        text-align: center; /* Centra il titolo del carosello */
+    }
+    
+    /* Centra il contenitore del contenuto su mobile */
+    .content-container-stack,
+    .content-container {
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    /* Rendi la skill card più adatta allo schermo ridotto */
+    .skill-card {
+        min-width: 250px; /* Consenti di essere più stretto */
+        padding: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Aggiusta l'area del carosello e i pallini */
+    .carousel-wrapper {
+        padding: 0 10px; /* Riduci il padding del wrapper */
+    }
+    
+    .carousel-dots-container {
+        padding-right: 0;
+    }
+}

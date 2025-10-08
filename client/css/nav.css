@@ -1,6 +1,5 @@
 .nav-container{
     /* background: rgba( 0,0,0,0.6); */
-    padding: 0.6rem 1rem;
     z-index: 20;
     position: fixed;
     bottom: 1rem;
@@ -11,11 +10,15 @@
     -webkit-box-shadow: 0px -4px 15px 3px #353535;
     -moz-box-shadow: 0px -4px 15px 3px #353535;
     -o-box-shadow: 0px -4px 15px 3px #353535;
-  box-shadow: 0px -4px 15px 3px #353535;
-    right: 50%;
-    transform: translateX(50%);
-
+    box-shadow: 0px -4px 15px 3px #353535;
+    padding: 0.7rem 0.7rem;
+left: 0;       /* Aggancia al bordo sinistro */
+    right: 0;      /* Aggancia al bordo destro */
+    width: fit-content; /* L'elemento occupa solo lo spazio del suo contenuto */
+    margin: 0 auto; /* Centra l'elemento all'interno dello spazio left: 0; right: 0; */
+    
 }
+
 
 .nav-container-left{
     padding: 0.5rem ;
@@ -30,8 +33,10 @@
     -moz-box-shadow: 0px -4px 15px 3px #353535;
     -o-box-shadow: 0px -4px 15px 3px #353535;
   box-shadow: 0px -4px 15px 3px #353535;
-    right: 5%;
-    transform: translateX(50%);
+    left: 5%; /* Usa 'left' invece di 'right' */    
+    right: initial;
+
+    transform: none;
 }
 
 nav a  {
@@ -101,3 +106,55 @@ nav a.unactive {
   animation: slideUpBounce 0.6s ease forwards;
 }
 
+/* ---------------------------------- */
+
+@media screen and (max-width: 500px) {
+    
+    /* Riduzione generale di spazio per i link */
+    nav a {
+        padding: 0.75rem; /* Riduci il padding dell'icona */
+        font-size: 1rem; /* Riduci la dimensione dell'icona */
+    }
+
+    /* Container Navigazione Principale */
+    .nav-container {
+        /* Riduci il padding del contenitore */
+        padding: 0.5rem 0.8rem;
+        /* Riduci il gap tra le icone */
+        gap: 0.6rem; 
+        
+    }
+
+    /* Container GitHub: Spostiamolo per evitare sovrapposizioni e liberare spazio */
+    .nav-container-left {
+        /* Spostalo più a sinistra e in alto */
+        left: 5%; /* Avvicina al bordo sinistro */
+        padding: 0.4rem;
+    }
+
+    /* ************ GESTIONE DEL TAG (TOOLTIP) ************ */
+    /* Il tag è problematico su mobile, nasconderlo o ridimensionarlo è l'ideale. */
+    .tagSection p {
+        /* Riduci drasticamente il padding e il font su mobile */
+        padding: 0.5rem 1.5rem;
+        font-size: 0.85rem;
+        /* Spostalo in una posizione meno invasiva, ad esempio vicino al .nav-container-left */
+        left: 5%; 
+        right: initial; /* Assicurati che non ci siano conflitti con il 'right' precedente */
+        transform: translateX(0) translateY(100%); /* Ripristina la posizione nascosta */
+    }
+
+    /* Aggiorna l'animazione per la nuova posizione */
+    @keyframes slideUpBounce {
+        0% { transform: translateX(0) translateY(100%); opacity: 0; }
+        70% { transform: translateX(0) translateY(-10%); opacity: 1; }
+        100% { transform: translateX(0) translateY(0); }
+    }
+    
+    .tagSection.active p {
+        /* Applica la nuova animazione */
+        animation: slideUpBounce 0.6s ease forwards;
+        transform: translateX(0) translateY(0); 
+        left: 5%; /* Mantieni la posizione finale a sinistra */
+    }
+}

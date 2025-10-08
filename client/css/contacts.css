@@ -1,39 +1,17 @@
-
-
-
 .contact{
+    /* Centra il contenuto e occupa l'intera altezza della viewport */
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-        flex-direction: column;
+    flex-direction: column;
     padding-bottom: 3rem;
 }
 
-.hidden{
-    display: none;
-}
-
-.box__contact{
-    display: grid;
-    grid-template-columns: 40% 60%;
-}
-
-@media screen and (max-width: 1048px){
-    .box__contact{
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-    }
-}
-
-
-
-
 .section__title__section{
+    /* Mantenuto per il titolo */
     width: 300px;
     height: 100px;
-
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
@@ -46,18 +24,13 @@
 }
 
 .section__title{
-    font-size: var(--h2-font-size);
+    /* Usa la variabile per la dimensione del titolo */
+    font-size: var(--h2-font-size); 
     color: var(--title-color);
     letter-spacing: .5px;
 }
 
-.box_direct_contacts{
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: column;
-
-}
-
+/* Stile per il blocco del contatto (ex .whatsapp) */
 .whatsapp{
     width: 300px;
     height: 200px;
@@ -68,9 +41,21 @@
     flex-direction: column;
     justify-content: center;
     align-items:center;
+    /* Rimuovi i margini auto/laterali, li gestirà il contenitore */
+    margin: 0;
+}
+
+.fa-envelope{
+    /* Icona principale */
+    font-size: 2rem;
+    color: #e4e4e4;
+    background: transparent;
 }
 
 .contact__icon{
+    /* Rimosso l'uso del width/height fisso su questa classe,
+       dato che .fa-envelope usa font-size per la dimensione.
+       Mantengo la classe ma ne riduco la priorità */
     width: 2.5rem;
     height: 2.5rem;
     color: #e4e4e4;
@@ -90,164 +75,80 @@
     margin-top: 10px;
 }
 
-.container__box__CTA{
-    margin-top: 20px;
+/* Gestione dello Spacing Mobile (Mobile Spacing) */
+.mobile_spacing{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
-    transition: 0.3s;
-    padding: 5px 10px;
-    background-color: rgb(200, 200, 200);
-    border-radius: 5px;
+    width: 100%;
 }
 
-.color__text{
-    color: #1E1E1E  ;
-    font-size: 0.75rem;
-    font-weight: 500;
-}
-
-.container__box__CTA:hover{
-    background-color: #f2f2f2;
-}
-
-.container__box__icon{
-    width: 1rem;
-    height: 1rem;
-    color: #434343;
-    margin-left: 7px;
-}
-
-.fa-envelope{
-    font-size: 2rem;
-
-}
-
-@media screen and (max-width: 1048px){
-    .mobile_spacing{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .section__title__section{
-        width: 100%;
-        margin-bottom: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
-    }
-
-    .whatsapp{
-        width: 280px;
-        height: 200px;
-        border-radius: 10px;
-        border: 1px solid #484848;
-        margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
-        margin-left: .5rem;
-        margin-right: .5rem;
-    }
-
-    .container__box__icon{
-        width: .9rem;
-        height: .9rem;
-        color: #434343;
-        margin-left: 5px;
-    }
-}
-
+/* ================================================= */
+/* MEDIA QUERY PER TABLET (Max 768px)                */
+/* Riduci dimensioni e spaziature */
+/* ================================================= */
 @media screen and (max-width: 768px){
-
+    
+    .contact {
+        /* Riduci l'altezza minima, evita che occupi sempre l'intera viewport su mobile */
+        height: auto; 
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+    }
 
     .section__title__section{
         width: 100%;
         margin-bottom: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
     }
 
     .whatsapp{
-        width: 250px;
-        height: 190px;
-        border-radius: 10px;
-        border: 1px solid #484848;
-        margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
-        margin-left: .5rem;
-        margin-right: .5rem;
+        /* Riduci leggermente il blocco */
+        width: 260px;
+        height: 180px;
+        margin-bottom: 10px;
     }
 
-    .color__text{
-        color: #1E1E1E  ;
-        font-size: 0.65rem;
-        font-weight: 500;
-    }
-
-    .contact__icon{
-        width: 2.3rem;
-        height: 2.3rem;
-        color: #e4e4e4;
+    .fa-envelope {
+        font-size: 1.8rem;
     }
     
     .container__box__title{
-        font-weight: 400;
-        margin-top: 10px;
-        color: #e4e4e4;
-        font-size: 0.8rem;
+        font-size: 0.9rem;
+        margin-top: 8px;
     }
     
     .container__box__content{
-        font-weight: 400;
-        color: #8e8e8e;
-        font-size: .85rem;
+        font-size: 0.9rem;
     }
+    
+    /* Nota: Rimosse le classi .color__text e .container__box__icon non usate nell'HTML */
 }
 
+/* ================================================= */
+/* MEDIA QUERY PER SMARTPHONE (Max 576px)            */
+/* Ulteriori riduzioni per schermi stretti */
+/* ================================================= */
 @media screen and (max-width: 576px){
-    .mobile_spacing{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .section__title__section{
-        width: 100%;
-        margin-bottom: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
-    }
-
     .whatsapp{
-        width: 250px;
+        /* Avvicina il blocco alla larghezza massima dello schermo (con i margini laterali) */
+        width: 100%; 
+        max-width: 300px;
         height: 200px;
-        border-radius: 10px;
-        border: 1px solid #484848;
-        margin-bottom: 15px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items:center;
+        /* Centra usando i margini se il parent non è 100% allineato */
         margin-left: auto;
         margin-right: auto;
     }
+    
+    .contact {
+        /* Rimuovi il padding di base per massimizzare lo spazio */
+        padding-bottom: 10rem;
+    }
+
+    .container__box__title{
+        font-size: 0.85rem;
+    }
+    
+    .container__box__content{
+        font-size: 0.8rem;
+    }
 }
-
-
-
-

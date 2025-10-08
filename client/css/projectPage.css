@@ -1,27 +1,4 @@
 
-/* --- Sezione Progetti --- */
-.projects-section {
-    background-color: #191919;
-    padding: 40px 20px;
-    min-height: 100vh;
-    color: #d1a161;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
-
-/* Titolo della sezione */
-.projects-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 40px;
-    border-bottom: 2px solid #d1a161;
-    display: inline-block;
-    padding-bottom: 10px;
-}
 
 /* Griglia delle card */
 .app-list {
@@ -31,35 +8,8 @@
     align-items: start;
 }
 
-/* Container della griglia (NUOVO STILE) */
-.projects-grid {
-    display: grid;
-    /*
-    Questa linea crea colonne responsive:
-    - auto-fill: continua a riempire la riga con le colonne.
-    - minmax(320px, 1fr): ogni colonna ha una dimensione minima di 320px,
-      ma si espande per occupare uno spazio equo (1fr) se c'è più spazio.
-    */
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 30px; /* Spazio tra gli elementi della griglia */
-    padding: 20px 0;
-    max-width: 1200px; /* Limita la larghezza massima per una migliore lettura */
-    margin: 0 auto; /* Centra il container */
-}
 
-/* Migliora l'aspetto delle card per la griglia */
-.project-item {
-    padding: 25px;
-    border-radius: 10px;
-    background-color: #2b2a2a; /* Colore di sfondo leggermente diverso */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Assicurati che ogni elemento occupi l'intera altezza del suo slot */
-    display: flex; 
-    flex-direction: column;
-    justify-content: space-between; /* Spinge i bottoni in basso */
-    height: 100%; /* Importante per l'allineamento in griglia */
-    transition: transform 0.3s ease;
-}
+
 
 .project-item:hover {
     transform: translateY(-5px);
@@ -96,25 +46,9 @@
 
 }
 
-/* Pulsanti */
-.project-buttons {
-    margin-top: 10px;
-            background-color: #2b2a2a; /* Colore di sfondo leggermente diverso */
 
-}
 
-.project-buttons a {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
-    padding: 8px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    background-color: #d1a161;
-    color: #000000;
-    transition: all 0.2s ease;
-}
+
 
 .project-buttons a:hover {
     background-color: transparent;
@@ -141,4 +75,143 @@
     font-weight: bold;
     border: 1px solid #d1a161;
     text-transform: uppercase;
+}
+
+
+/* ================================================= */
+/* 1. Stili Base (Da lasciare intatti)              */
+/* ================================================= */
+.projects-section {
+    padding: 40px 20px;
+    /* L'altezza minima rimane 100vh come richiesto */
+    min-height: 100vh; 
+    color: #d1a161;
+    width: auto;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Titolo della sezione */
+.projects-title {
+    text-align: center;
+    font-size: 2.5rem; /* Sarà ridotto nella media query */
+    margin-bottom: 40px;
+    border-bottom: 2px solid #d1a161;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Griglia dei Progetti */
+.projects-grid {
+    display: grid;
+    /* Manteniamo l'approccio responsivo: min 320px */
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px; 
+    padding: 20px 0;
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+/* Card Progetto */
+.project-item {
+    padding: 25px; /* Sarà ridotto nella media query */
+    border-radius: 10px;
+    background-color: #2b2a2a; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between; 
+    height: 100%; 
+    transition: transform 0.3s ease;
+}
+
+/* Pulsanti */
+.project-buttons {
+    margin-top: 10px;
+    background-color: #2b2a2a;
+    /* Aggiungo flex per gestire i link come blocchi */
+    display: flex; 
+    gap: 10px; /* Spazio tra i bottoni (se ce ne sono più di uno) */
+}
+
+.project-buttons a {
+    /* Rimuovo display: flex e justify-content: center da qui 
+       perché i bottoni saranno in colonna su mobile, sebbene
+       l'impostazione flex sul parent .project-buttons sia più utile.
+       Lasciamolo così se i bottoni devono essere centrati! */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Rimosso margin-right: 10px; a favore del 'gap' sul parent */
+    margin-right: 0; 
+    padding: 8px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    background-color: #d1a161;
+    color: #000000;
+    transition: all 0.2s ease;
+    flex-grow: 1; /* Rende il link espandibile */
+}
+
+
+
+/* ================================================= */
+/* 2. MEDIA QUERY PER TABLET (Max 992px)            */
+/* ================================================= */
+
+
+/* ================================================= */
+/* 3. MEDIA QUERY PER SMARTPHONE (Max 576px)        */
+/* ================================================= */
+@media screen and (max-width: 992px) {
+    
+    .projects-section {
+        /* Riduci il padding laterale del contenitore principale */
+        padding: 30px 15px;
+    }
+
+    .projects-title {
+        /* Riduci la dimensione del titolo su mobile */
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+
+    .projects-grid {
+        /* FORZA UNA COLONNA UNICA: Riduci il minmax a un valore basso, 
+           o forzalo a 1fr. Con minmax(250px, 1fr) avrai card a tutta larghezza su 
+           schermi più piccoli di 500px, ed è un buon compromesso. */
+        grid-template-columns: 1fr; /* Una colonna unica! */
+        gap: 70px; /* Riduci il gap verticale tra le card */
+        padding: 0;
+
+    }
+    
+    .project-item {
+        /* Riduci il padding interno delle card */
+        padding: 20px;
+        width: 60%;
+        min-width: 250px;
+                    margin-left: auto;
+    margin-right: auto;
+    }
+
+    .project-name {
+        /* Riduci la dimensione del titolo del progetto */
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+    
+    .project-buttons {
+        /* Se hai più bottoni, falli apparire in colonna invece che in riga */
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .project-buttons a {
+        /* Rimuovi l'espansione per bottoni in colonna se preferisci */
+        flex-grow: initial;
+    }
 }
