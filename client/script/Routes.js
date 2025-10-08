@@ -30,6 +30,12 @@ class Routes{
                navigationComponent: 'components/navigationArticle.html',
                 styles: ['../css/blogArticle.css', '../css/nav.css'] 
             }
+        ],[
+            'article-2',{
+               mainComponent:'pages/article2.html',
+               navigationComponent: 'components/navigationArticle.html',
+                styles: ['../css/blogArticle.css', '../css/nav.css'] 
+            }
         ]
     ]);        
     getRoutes(path){

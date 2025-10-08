@@ -120,3 +120,15 @@
 .app-list h3:nth-of-type(3) + p + p {
     margin-top: -10px; /* Riduce lo spazio tra i due paragrafi adiacenti */
 }
+
+.app-list a {
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #d1a161; /* Usa il colore del bordo per il link */
+    border: 1px solid #d1a161;
+    transition: background-color 0.3s;
+}

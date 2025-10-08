@@ -8,11 +8,11 @@ class ContentCards{
             linkUrl: "http://localhost:5500#article-1" 
         },
         {
-            title: "Documentazione 2", 
-            desc: "Garantisco la chiarezza del codice con documentazione accurata, essenziale per la collaborazione.",
-            technologies: "Strumenti: README, JSDoc/Sphinx.",
+            title: "My approach to Documentation", 
+            desc: "Explaining my approach to documantation, by also providing examples",
+            technologies: "",
             linkText: "Read Article", 
-            linkUrl: "https://esempio.com/readme" 
+            linkUrl: "http://localhost:5500#article-2" 
         }
     ]
 
