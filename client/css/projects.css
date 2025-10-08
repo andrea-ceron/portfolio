@@ -8,14 +8,46 @@
     /* align-items: center; può essere rimosso o mantenuto in base al posizionamento verticale desiderato */
 }
 
-/* Stili comuni per le schede */
 .university {
-    min-height: 100vh;
-    display: flex;
+    /* min-height: 100vh; - Già presente */
+    /* display: flex; - Già presente */
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 60px 40px; /* Aumentiamo il padding verticale */
     background-color: #191919; 
+    color: #fff; /* Assicura che il testo sia bianco per default */
+}
+
+/* Contenuto interno: Aggiungiamo un max-width per non avere linee di testo troppo lunghe */
+.content-container {
+    text-align: left;
+    max-width: 650px; /* Limita la larghezza del blocco di testo a una misura leggibile */
+    padding: 0 20px; /* Padding interno di sicurezza */
+}
+
+/* Titolo: Rendiamolo più elegante e spazioso */
+.uniTitle {
+    /* La tua versione: font-size: 2.5rem; */
+    font-size: 3.2rem; /* Rende il titolo più grande e d'impatto */
+    margin-bottom: 25px; /* Più spazio sotto il titolo */
+    letter-spacing: -0.5px; /* Leggera compressione per un look moderno */
+    color: #fff; /* Usiamo il colore d'accento per il titolo */
+    font-weight: 700; /* Assicura che sia in grassetto */
+}
+
+/* Paragrafo: Miglioriamo la leggibilità e la scorrevolezza */
+.uniParagraph {
+    /* La tua versione: font-size: 1.2rem; */
+    font-size: 1.15rem; /* Leggermente più piccolo, ma ancora grande */
+    line-height: 1.6; /* Aumenta lo spazio tra le righe per migliorare la leggibilità (Cruciale!) */
+    margin-bottom: 30px; 
+    
+    /* Nota: Hai impostato width: 70%;. Potresti rimuoverlo 
+       se usi max-width sul content-container, rendendo il codice più pulito.
+       Se lo mantieni, assicurati che funzioni su tutti gli schermi.
+    */
+    width: 100%; /* Lascia che il max-width sul genitore gestisca la larghezza */
+    color: #f0f0f0; /* Un bianco leggermente off-white è più gradevole del bianco puro */
 }
 
 .projects {
@@ -30,11 +62,7 @@
 
 
 
-/* Contenuto interno */
-.content-container {
-    text-align: left;
 
-}
 
 
 .content-container h2,
@@ -72,16 +100,6 @@
 }
 
 
-
-.uniTitle {
-    margin-bottom: 20px;
-    font-size: 2.5rem;
-}
-
-.uniParagraph {
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-}
 
 
 .project-card {
@@ -155,12 +173,15 @@
 }
 
 .stackTitle {
-    padding-bottom: 30px;
-    font-size: 2.5rem;
+    padding-bottom: 50px;
+    padding-left: 45px;
     /* Rimuovi sfondi indesiderati */
     background-color: #D2B48C; 
         color: #191919;
 
+    font-size: 3.2rem; /* Rende il titolo più grande e d'impatto */
+    letter-spacing: -0.5px; /* Leggera compressione per un look moderno */
+    font-weight: 700; /* Assicura che sia in grassetto */
 }
 
 .skill-card {

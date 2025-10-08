@@ -8,8 +8,6 @@ class HomeScript{
     setOnClickListener(){
         let rightClickElem = document.getElementById("right-arrow")
         console.log(rightClickElem)
-                    let elem = document.getElementById("skill-card");
-
         rightClickElem.addEventListener("click", (e)=>{
             const actionValueData = e.currentTarget.dataset.action; 
 
@@ -61,7 +59,6 @@ class HomeScript{
         const linkElement = document.createElement('a');
         linkElement.href = objectToDisplay.linkUrl;
         linkElement.textContent = objectToDisplay.linkText;
-        linkElement.target = '_blank'; 
 
         elem.appendChild(titleElement);
         elem.appendChild(descElement);

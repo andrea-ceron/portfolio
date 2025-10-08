@@ -1,7 +1,7 @@
 .nav-container{
     /* background: rgba( 0,0,0,0.6); */
     padding: 0.6rem 1rem;
-    z-index: 6;
+    z-index: 20;
     position: fixed;
     bottom: 1rem;
     display: flex;

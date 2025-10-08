@@ -11,6 +11,11 @@ class Router {
       router.loadPage();
     });
 
+    window.addEventListener("resize", () => {
+        console.log("resize cambiato")
+      router.loadPage();
+    });
+
   }
 
     async loadPage() {
@@ -27,6 +32,9 @@ class Router {
 
         if (filePaths.script) {
             await renderer.loadScript(filePaths.script);
+        }
+        if(!filePaths.parentTag){
+          window.scrollTo(0, 0);
         }
 
         window.dispatchEvent(new CustomEvent("RenderingPageCompleted", { detail: { path } }));

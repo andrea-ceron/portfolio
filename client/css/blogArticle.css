@@ -1,0 +1,122 @@
+/* --- Stili per l'articolo del blog sul Processo di Sviluppo (Tema Scuro) --- */
+
+/* 1. Contenitore Principale dell'Articolo */
+.app-list {
+    /* Centra e limita la larghezza del testo per migliorarne la leggibilità */
+    max-width: 900px; 
+    margin: 4rem auto; 
+    padding: 2rem 3rem; /* Padding interno */
+    background-color: var(--container-color); /* Sfondo scuro: #191919 */
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* Ombra più scura per il tema dark */
+    color: var(--text-color); /* Testo chiaro: #f2f2f2 */
+    font-family: var(--montserrat);
+}
+
+/* 2. Titoli */
+.app-list h2 {
+    font-size: var(--h1-font-size);
+    color: var(--title-color); 
+    margin-top: 0;
+    margin-bottom: var(--mb-2);
+    padding-bottom: var(--mb-0-75);
+    /* Sottolineatura meno invadente */
+    border-bottom: 3px solid #d1a161; 
+}
+
+.app-list h3 {
+    font-size: var(--h3-font-size);
+    color: var(--title-color); 
+    margin-top: var(--mb-2-5);
+    margin-bottom: var(--mb-1);
+    font-weight: var(--font-semi-bold);
+    /* Barra d'accento che usa il colore dei bottoni (oro/giallo: #d1a161) */
+    border-left: 5px solid #d1a161; 
+    padding-left: 15px;
+    line-height: 1.2;
+}
+
+/* 3. Paragrafi e Readability */
+.app-list p {
+    color: var(--text-color); 
+    font-size: var(--normal-font-size);
+    margin-bottom: var(--mb-1-5);
+    line-height: 1.7; /* Cruciale per la leggibilità */
+    background: transparent !important; 
+}
+
+/* Stili per i termini evidenziati (strong) */
+.app-list strong {
+    color: #d1a161; /* Colore d'accento per le parole chiave */
+    font-weight: var(--font-semi-bold);
+}
+
+/* 4. Liste (Generali) */
+.app-list ul {
+    list-style: none; /* Rimuovi lo stile predefinito */
+    padding-left: 0;
+    margin-bottom: var(--mb-2);
+}
+
+.app-list ul li {
+    font-size: var(--normal-font-size);
+    margin-bottom: var(--mb-0-5);
+    position: relative;
+    padding-left: 20px; /* Spazio per il bullet custom */
+}
+
+/* Bullet Point custom per le liste principali (Introduzione) */
+.app-list ul:first-of-type li::before {
+    content: "—"; /* Un trattino per le liste di alto livello */
+    color: #f2f2f2;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+/* 5. Stili per le Liste annidate (Requisiti) */
+.app-list p ul {
+    margin-top: var(--mb-1);
+    margin-bottom: var(--mb-1);
+}
+
+.app-list p ul li::before {
+    content: "•"; /* Usa il disco per le liste annidate */
+    color: #d1a161; /* Colore d'accento per i bullet point */
+    font-size: 1.2rem;
+    top: -2px;
+}
+
+/* 6. Stile per la Conclusione */
+.app-list p:last-of-type {
+    margin-top: var(--mb-3);
+    padding-top: var(--mb-1-5);
+    /* Separatore tratteggiato e più chiaro */
+    border-top: 1px dashed rgba(255, 255, 255, 0.2); 
+    font-style: italic;
+    color: rgba(242, 242, 242, 0.7); /* Testo leggermente sbiadito */
+}
+
+/* 7. Stili specifici per la lista V-Model (Testing) */
+.app-list h3:nth-of-type(4) + p + p + ul { 
+    /* Seleziona la lista UL che segue i due paragrafi successivi al Testing H3 */
+    padding-left: 10px;
+    margin-left: 10px;
+}
+.app-list h3:nth-of-type(4) + p + p + ul li {
+    border-left: 3px solid #d1a161; /* Linea verticale per evidenziare */
+    padding-left: 15px;
+    margin-left: 10px;
+    font-style: italic;
+    color: var(--text-color);
+}
+.app-list h3:nth-of-type(4) + p + p + ul li::before {
+    content: none; /* Rimuove il bullet point custom per questa lista */
+}
+
+
+/* 8. Correzioni di spaziatura per paragrafi adiacenti (Implementation) */
+/* Questo corregge il paragrafo diviso di "Implementation and Coding" */
+.app-list h3:nth-of-type(3) + p + p {
+    margin-top: -10px; /* Riduce lo spazio tra i due paragrafi adiacenti */
+}

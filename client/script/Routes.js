@@ -25,10 +25,10 @@ class Routes{
                 styles: ['../css/home.css', '../css/nav.css', '../css/contacts.css'] 
             }
         ],[
-            'projects',{
-               mainComponent:'pages/projectPage.html',
-               navigationComponent: 'components/navigation.html',
-                styles: ['../css/projectPage.css', '../css/nav.css'] 
+            'article-1',{
+               mainComponent:'pages/article1.html',
+               navigationComponent: 'components/navigationArticle.html',
+                styles: ['../css/blogArticle.css', '../css/nav.css'] 
             }
         ]
     ]);        
