@@ -310,13 +310,14 @@
     font-size: 3.2rem;
     letter-spacing: -0.5px;
     font-weight: 700;
-    padding-bottom: 1rem;
+    padding-bottom: 30px;
 }
 
 .stackTitle{
     background-color: #D2B48C;
     color: #191919;
     justify-self: center;
+    padding-left: 40px;
 }
 
 .uniParagraph {
@@ -366,6 +367,8 @@
         padding-left: 0; /* Rimuovi il padding extra dato in precedenza */
         padding-bottom: 30px;
         text-align: center; /* Centra il titolo del carosello */
+            padding-left: 0px;
+
     }
     
     /* Centra il contenitore del contenuto su mobile */
