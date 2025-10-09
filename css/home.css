@@ -2,6 +2,7 @@
    background-color: transparent;
    color: #d1a161;
     margin-right: 5px;
+    font-size: 1.4rem;
 }
 
 .home__data{
@@ -41,8 +42,8 @@
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     border-radius: 100%;
     border: 2px solid #7e7e7e;
     -webkit-box-shadow: 0px 0px 12px 2px #303030;
@@ -70,12 +71,12 @@
 
 .home__title, .home__subtitle, .home__description{
     text-align: center;
+    padding-bottom: 10px;
 }
 
 .home__title{
     font-size: var(--h2-font-size);
     font-weight: 400;
-    margin-bottom: 5px;
 
 }
 
@@ -89,8 +90,9 @@
 }
 
 .typewriter {
-    font-size: var(--h4-font-size);
+    font-size: 1.4rem;
     letter-spacing: 1.3px;
+    padding-bottom: 10px;
   }
   
   
@@ -115,7 +117,7 @@
 }
 
 .home__title{
-    font-size: var(--h2-font-size);
+    font-size: 2rem;
     font-weight: 400;
     margin-bottom: 5px;
 }
@@ -138,8 +140,8 @@
 
     /* Riduci l'immagine del profilo */
     .home__img {
-        width: 80px;
-        height: 80px;
+        width: 150px;
+        height: 150px;
     }
 
     /* Riduci la dimensione del titolo */
