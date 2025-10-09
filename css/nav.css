@@ -22,7 +22,7 @@ left: 0;       /* Aggancia al bordo sinistro */
 
 .nav-container-left{
     padding: 0.5rem ;
-    z-index: 6;
+    z-index: 11;
     position: fixed;
     bottom: 1rem;
     display: flex;

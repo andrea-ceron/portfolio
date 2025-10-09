@@ -329,6 +329,7 @@
     
     /* Regola Cruciale: Forza la griglia su una singola colonna */
     .projectPage {
+        width: 100%;
         /* Una colonna unica a tutta larghezza */
         grid-template-columns: 1fr; 
         /* Rimuoviamo la min-height: 100vh affinché i due blocchi si
@@ -344,6 +345,7 @@
            o lasciamo che il contenuto la determini (initial/auto) */
         padding: 40px 20px; /* Riduci il padding laterale e verticale */
         min-height: 70vh;
+        width: 100%;
 
     }
     

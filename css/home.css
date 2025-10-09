@@ -1,6 +1,6 @@
 .button__p__home{
    background-color: transparent;
-   color: var(--container-color);
+   color: #d1a161;
     margin-right: 5px;
 }
 
@@ -12,9 +12,16 @@
 }
 
 .button__home{
-    margin-top: 25px;
-    justify-self: center;
-    align-self: center;
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #d1a161; /* Usa il colore del bordo per il link */
+    border: 1px solid #d1a161;
+    transition: background-color 0.3s;
+    background-color: #191919;
  }
 
  .button__home:hover{
@@ -138,7 +145,14 @@
     /* Riduci la dimensione del titolo */
     .home__title {
         /* Sostituisci la variabile con un valore più piccolo e gestibile */
-        font-size: 1.8rem; 
+        font-size: 1.3rem; 
+        margin-bottom: 10px;
+    }
+
+        /* Riduci la dimensione del titolo */
+    .typewriter {
+        /* Sostituisci la variabile con un valore più piccolo e gestibile */
+        font-size: 1rem; 
         margin-bottom: 3px;
     }
 
