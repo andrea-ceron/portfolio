@@ -385,7 +385,7 @@
     
     /* Rendi la skill card più adatta allo schermo ridotto */
     .skill-card {
-        min-width: 250px; /* Consenti di essere più stretto */
+        min-width: 0px; /* Consenti di essere più stretto */
         padding: 20px;
         display: flex;
         align-items: center;
