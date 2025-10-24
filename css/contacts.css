@@ -20,14 +20,18 @@
 }
 
 .title__contact{
-    font-size: 1.25rem;
+    font-size: 3.2rem;
 }
 
-.section__title{
-    /* Usa la variabile per la dimensione del titolo */
-    font-size: var(--h2-font-size); 
-    color: var(--title-color);
-    letter-spacing: .5px;
+
+
+.section__title {
+    text-align: center;
+    font-size: 2.5rem; /* Sarà ridotto nella media query */
+    margin-bottom: 40px;
+    border-bottom: 2px solid #d1a161;
+    display: inline-block;
+    padding-bottom: 10px;
 }
 
 /* Stile per il blocco del contatto (ex .whatsapp) */
@@ -89,6 +93,11 @@
 /* ================================================= */
 @media screen and (max-width: 768px){
     
+    .section__title {
+        /* Riduci la dimensione del titolo su mobile */
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
     .contact {
         /* Riduci l'altezza minima, evita che occupi sempre l'intera viewport su mobile */
         height: auto; 
