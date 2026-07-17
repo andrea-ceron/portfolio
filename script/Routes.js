@@ -1,28 +1,46 @@
 class Routes{
+    homeStyles = ['../css/home.css', '../css/nav.css', '../css/projectPage.css', '../css/projects.css', '../css/contacts.css'];
+
     routesMap = new Map([
         [
-            '',{ 
-                mainComponent:'pages/homepage.html', 
-                navigationComponent: 'components/navigation.html', 
+            '',{
+                mainComponent:'pages/homepage.html',
+                navigationComponent: 'components/navigation.html',
                 script: 'script/pageScripts/homeScript.js',
                 parentTag: 'home',
-                styles: ['../css/home.css', '../css/nav.css']  
+                styles: this.homeStyles
             }
         ],[
-            'introduction',{ 
-                mainComponent:'pages/homepage.html', 
-                navigationComponent: 'components/navigation.html', 
+            'introduction',{
+                mainComponent:'pages/homepage.html',
+                navigationComponent: 'components/navigation.html',
                 script: 'script/pageScripts/homeScript.js',
                 parentTag: 'home',
-                styles: ['../css/home.css', '../css/nav.css', '../css/contacts.css'] 
+                styles: this.homeStyles
             }
         ],[
             'about',{
-                mainComponent:'pages/homepage.html', 
-                navigationComponent: 'components/navigation.html', 
+                mainComponent:'pages/homepage.html',
+                navigationComponent: 'components/navigation.html',
                 script: 'script/pageScripts/homeScript.js',
                 parentTag: 'home',
-                styles: ['../css/home.css', '../css/nav.css', '../css/contacts.css'] 
+                styles: this.homeStyles
+            }
+        ],[
+            'githubProjects',{
+                mainComponent:'pages/homepage.html',
+                navigationComponent: 'components/navigation.html',
+                script: 'script/pageScripts/homeScript.js',
+                parentTag: 'home',
+                styles: this.homeStyles
+            }
+        ],[
+            'contact',{
+                mainComponent:'pages/homepage.html',
+                navigationComponent: 'components/navigation.html',
+                script: 'script/pageScripts/homeScript.js',
+                parentTag: 'home',
+                styles: this.homeStyles
             }
         ],[
             'article-1',{

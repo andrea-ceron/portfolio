@@ -2,23 +2,27 @@ import contentCards from "../helper/contentCards.js";
 
 class HomeScript{
     pageSections = ['introduction', 'about','githubProjects' ,'contact']; 
-    heightSectionsPage = [];
+    sectionPositions = [];
     contentCardsIndex = 0;
+    scrollHandler = null;
+    resizeHandler = null;
 
     setOnClickListener(){
         let rightClickElem = document.getElementById("right-arrow")
         console.log(rightClickElem)
-        rightClickElem.addEventListener("click", (e)=>{
+        if (!rightClickElem) return;
+        rightClickElem.onclick = (e)=>{
             const actionValueData = e.currentTarget.dataset.action; 
 
             this.displayContentCards(actionValueData);
-        })
+        };
         let leftClickElem = document.getElementById("left-arrow")
-        leftClickElem.addEventListener("click", (e)=>{
+        if (!leftClickElem) return;
+        leftClickElem.onclick = (e)=>{
             const actionValueData = e.currentTarget.dataset.action; 
 
             this.displayContentCards(actionValueData);
-        })
+        };
     }
     checkButtonClicked(){
         
@@ -26,25 +30,20 @@ class HomeScript{
 
     displayContentCards(navigation = 0){
         let content = contentCards.getContent();
-        let index = parseInt(navigation)
+        let index = parseInt(navigation) || 0;
         console.log(typeof index)
-        if(this.contentCardsIndex + index < 0 || this.contentCardsIndex + index > content.length-1){
+        const nextIndex = this.contentCardsIndex + index;
+        if(nextIndex < 0 || nextIndex > content.length-1){
+            this.updateArrowStates(content.length);
             return;
         }
-        if(this.contentCardsIndex+ index === 1 ){
-             let leftArrow = document.getElementById("left-arrow");
-            leftArrow.style.color = '#191919';
-        }  
-        if(this.contentCardsIndex+ index === content.length-2){
-            let rightArrow = document.getElementById("right-arrow");
-            rightArrow.style.color = '#191919';
-        }
-        this.contentCardsIndex += index
+        this.contentCardsIndex = nextIndex
         console.log(this.contentCardsIndex)
 
         console.log(content)
         let objectToDisplay = content[this.contentCardsIndex];
         let elem = document.getElementById("skill-card");
+        if (!elem) return;
         elem.innerHTML = '';
 
         const titleElement = document.createElement('h3');
@@ -64,13 +63,18 @@ class HomeScript{
         elem.appendChild(descElement);
         elem.appendChild(techElement);
         elem.appendChild(linkElement);
-        if(this.contentCardsIndex === 0 ){
-            let leftArrow = document.getElementById("left-arrow");
-            leftArrow.style.color = '#D2B48C';
+        this.updateArrowStates(content.length);
+    }
+
+    updateArrowStates(totalCards){
+        let leftArrow = document.getElementById("left-arrow");
+        let rightArrow = document.getElementById("right-arrow");
+
+        if (leftArrow) {
+            leftArrow.classList.toggle("disabled", this.contentCardsIndex === 0);
         }
-        if(this.contentCardsIndex === content.length-1){
-            let rightArrow = document.getElementById("right-arrow");
-            rightArrow.style.color = '#D2B48C';
+        if (rightArrow) {
+            rightArrow.classList.toggle("disabled", this.contentCardsIndex === totalCards - 1);
         }
     }
 
@@ -82,21 +86,41 @@ class HomeScript{
             hashUrl = `#${labelEvent}Nav`
         this.alterCSSNavbarOnClick(hashUrl);
         console.log("rendering")
-        let height = this.findSectionHeight();
-        this.heightSectionsPage = height;
-        window.addEventListener("scroll",()=>{
+        this.updateSectionPositions();
+        if (this.scrollHandler) {
+            window.removeEventListener("scroll", this.scrollHandler);
+        }
+        if (this.resizeHandler) {
+            window.removeEventListener("resize", this.resizeHandler);
+        }
+        this.scrollHandler = () => {
             this.alterCSSNavbarOnScroll(window.scrollY);
-        })
+        };
+        this.resizeHandler = () => {
+            this.updateSectionPositions();
+            this.alterCSSNavbarOnScroll(window.scrollY);
+        };
+        window.addEventListener("scroll", this.scrollHandler);
+        window.addEventListener("resize", this.resizeHandler);
+        window.addEventListener("load", this.resizeHandler, { once: true });
+
+        requestAnimationFrame(() => {
+            this.updateSectionPositions();
+            this.alterCSSNavbarOnScroll(window.scrollY);
+        });
     }
 
-    findSectionHeight(){
-        let res = []
-        for(let elem of this.pageSections){
-            const section = document.querySelector(`#${elem}`);
-            const height = section.offsetHeight; 
-            res.push(height);
+    updateSectionPositions(){
+        this.sectionPositions = [];
+        for(const sectionId of this.pageSections){
+            const section = document.getElementById(sectionId);
+            if (!section) continue;
+            this.sectionPositions.push({
+                id: sectionId,
+                top: section.offsetTop,
+                bottom: section.offsetTop + section.offsetHeight
+            });
         }
-        return res;
     }
 
     alterCSSNavbarOnClick(hashUrl){
@@ -113,40 +137,30 @@ class HomeScript{
     }
 
     alterCSSNavbarOnScroll(scrollY) {
-        let cumulativeHeight = 0;
-        let sectionIndex = 0;
-
-        while (sectionIndex < this.heightSectionsPage.length && cumulativeHeight < scrollY) {
-            cumulativeHeight += this.heightSectionsPage[sectionIndex];
-            sectionIndex++;
+        if (this.sectionPositions.length === 0) {
+            this.updateSectionPositions();
         }
 
-        sectionIndex--; 
+        const activationPoint = scrollY + (window.innerHeight * 0.45);
+        let activeSection = this.sectionPositions[0]?.id || this.pageSections[0];
 
-        const previousSectionIndex = Math.max(0, sectionIndex - 1);
-        const normalizedScroll = cumulativeHeight - scrollY;
-
-        const percentage = (normalizedScroll / this.heightSectionsPage[previousSectionIndex]) * 100;
-
-        if (percentage <= 40) {
-            let section = this.pageSections[sectionIndex+1];
-            let idNavigation = `#${section}Nav`
-            this.alterCSSNavbarOnClick(idNavigation);
-        } else if (percentage >= 60) {
-            let section = this.pageSections[sectionIndex];
-            let idNavigation = `#${section}Nav`
-            this.alterCSSNavbarOnClick(idNavigation);
+        for (const section of this.sectionPositions) {
+            if (activationPoint >= section.top) {
+                activeSection = section.id;
+            }
         }
+
+        this.alterCSSNavbarOnClick(`#${activeSection}Nav`);
     }
 
 }
 
 var homeScript = new HomeScript();
 window.addEventListener("RenderingPageCompleted", (e) => {
-  if ( e.detail.path === "" || e.detail.path === "introduction" || e.detail.path === "about") {
-    homeScript.triggerHomeScriptAction(e.detail.path);
+  if (homeScript.pageSections.includes(e.detail.path) || e.detail.path === "") {
     homeScript.displayContentCards();
     homeScript.setOnClickListener();
+    homeScript.triggerHomeScriptAction(e.detail.path);
   }
 });
 

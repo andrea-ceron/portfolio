@@ -245,6 +245,14 @@
     color: #6d5b41;
 }
 
+.arrow.disabled {
+    color: #D2B48C;
+}
+
+.arrow.disabled:hover {
+    color: #D2B48C;
+}
+
 /* Modifica gli stili esistenti per .skill-carousel */
 .skill-carousel {
     flex-grow: 1; /* Mantiene la capacità di espandersi tra le frecce */

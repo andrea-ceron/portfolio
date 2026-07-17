@@ -1,18 +1,34 @@
 
 class Renderer{
+    normalizePath(path) {
+        return new URL(path, window.location.href).href;
+    }
+
     async loadStyle(path) {
         return new Promise((resolve, reject) => {
-            if (document.querySelector(`link[href="${path}"][data-dynamic-css]`)) {
+            const normalizedPath = this.normalizePath(path);
+            if (document.querySelector(`link[href="${normalizedPath}"][data-dynamic-css]`)) {
                 resolve();
                 return;
             }
             const link = document.createElement("link");
             link.rel = "stylesheet"; 
-            link.href = path;
+            link.href = normalizedPath;
             link.setAttribute('data-dynamic-css', 'true');
+            link.dataset.routeStyle = normalizedPath;
             link.onload = () => resolve();
             link.onerror = () => reject(new Error(`Errore nel caricamento CSS: ${path}`));
             document.head.appendChild(link);
+        });
+    }
+
+    unloadUnusedStyles(stylePaths = []) {
+        const activeStyles = new Set(stylePaths.map((path) => this.normalizePath(path)));
+
+        document.querySelectorAll('link[data-dynamic-css]').forEach((link) => {
+            if (!activeStyles.has(link.href)) {
+                link.remove();
+            }
         });
     }
 
@@ -22,6 +38,8 @@ class Renderer{
                 
         mainDiv.classList.remove('visible');
         navDiv.classList.remove('visible');
+
+        this.unloadUnusedStyles(stylePaths);
         
         const promises = [];
         
@@ -45,10 +63,9 @@ class Renderer{
         mainDiv.innerHTML = htmlMain;
 
         if (HTMLPathNavigation) {
-            let navIndex = HTMLPathNavigation ? 1 : 0;
-            if(HTMLPathNavigation) {
-                navDiv.innerHTML = results.find(r => r === htmlNav) || results[1];
-            }
+            navDiv.innerHTML = htmlNav;
+        } else {
+            navDiv.innerHTML = '';
         }
         requestAnimationFrame(() => {
             mainDiv.classList.add('visible');
