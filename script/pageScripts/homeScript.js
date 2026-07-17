@@ -1,11 +1,15 @@
 import contentCards from "../helper/contentCards.js";
 
 class HomeScript{
-    pageSections = ['introduction', 'about','githubProjects' ,'contact']; 
+    pageSections = ['introduction', 'experience', 'about', 'githubProjects', 'contact'];
     sectionPositions = [];
     contentCardsIndex = 0;
     scrollHandler = null;
     resizeHandler = null;
+    timelineObserver = null;
+    timelineScrollHandler = null;
+    timelineResizeHandler = null;
+    timelineFrame = null;
 
     setOnClickListener(){
         let rightClickElem = document.getElementById("right-arrow")
@@ -79,6 +83,7 @@ class HomeScript{
     }
 
     triggerHomeScriptAction(labelEvent){
+        this.initializeCareerTimeline();
         let hashUrl
         if (labelEvent === "")
             hashUrl = `#introductionNav`
@@ -108,6 +113,58 @@ class HomeScript{
             this.updateSectionPositions();
             this.alterCSSNavbarOnScroll(window.scrollY);
         });
+    }
+
+    initializeCareerTimeline(){
+        const timeline = document.getElementById("experience");
+        if (!timeline) return;
+
+        if (this.timelineObserver) this.timelineObserver.disconnect();
+        if (this.timelineScrollHandler) window.removeEventListener("scroll", this.timelineScrollHandler);
+        if (this.timelineResizeHandler) window.removeEventListener("resize", this.timelineResizeHandler);
+        if (this.timelineFrame) cancelAnimationFrame(this.timelineFrame);
+
+        const entries = timeline.querySelectorAll(".timeline-entry");
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!reducedMotion && "IntersectionObserver" in window) {
+            timeline.classList.add("timeline--enhanced");
+            this.timelineObserver = new IntersectionObserver((observedEntries) => {
+                observedEntries.forEach((entry) => {
+                    if (entry.isIntersecting) entry.target.classList.add("is-visible");
+                });
+            }, { threshold: 0.18 });
+            entries.forEach((entry) => this.timelineObserver.observe(entry));
+        } else {
+            entries.forEach((entry) => entry.classList.add("is-visible"));
+        }
+
+        const updateProgress = () => {
+            const track = timeline.querySelector(".career-timeline__track");
+            if (!track) return;
+
+            const trackRect = track.getBoundingClientRect();
+            const viewportPoint = window.innerHeight * 0.55;
+            const trackHeight = trackRect.height;
+            const progress = trackHeight > 0
+                ? Math.max(0, Math.min(1, (viewportPoint - trackRect.top) / trackHeight))
+                : 0;
+
+            timeline.style.setProperty("--timeline-progress", `${progress * 100}%`);
+        };
+
+        const scheduleProgressUpdate = () => {
+            if (this.timelineFrame) return;
+            this.timelineFrame = requestAnimationFrame(() => {
+                this.timelineFrame = null;
+                updateProgress();
+            });
+        };
+
+        this.timelineScrollHandler = scheduleProgressUpdate;
+        this.timelineResizeHandler = updateProgress;
+        window.addEventListener("scroll", this.timelineScrollHandler, { passive: true });
+        window.addEventListener("resize", this.timelineResizeHandler);
+        updateProgress();
     }
 
     updateSectionPositions(){

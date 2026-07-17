@@ -1,5 +1,5 @@
 class Routes{
-    homeStyles = ['../css/home.css', '../css/nav.css', '../css/projectPage.css', '../css/projects.css', '../css/contacts.css'];
+    homeStyles = ['../css/home.css', '../css/nav.css', '../css/projectPage.css', '../css/projects.css', '../css/contacts.css', '../css/timeline.css'];
 
     routesMap = new Map([
         [
@@ -12,6 +12,14 @@ class Routes{
             }
         ],[
             'introduction',{
+                mainComponent:'pages/homepage.html',
+                navigationComponent: 'components/navigation.html',
+                script: 'script/pageScripts/homeScript.js',
+                parentTag: 'home',
+                styles: this.homeStyles
+            }
+        ],[
+            'experience',{
                 mainComponent:'pages/homepage.html',
                 navigationComponent: 'components/navigation.html',
                 script: 'script/pageScripts/homeScript.js',
